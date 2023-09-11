@@ -211,7 +211,7 @@ where a.patient_id=s.patient_id and diagnosis='Dementia'
 
 3. Show patient_id and first_name from patients where their first_name start and ends with 's' and is at least 6 characters long.
 
-``sql
+```sql
 
 select (first_name) from patients
 order by len(first_name),first_name;
@@ -221,7 +221,7 @@ order by len(first_name),first_name;
 4. Show patient_id, first_name, last_name from patients whos diagnosis is 'Dementia'.
    Primary diagnosis is stored in the admissions table.
 
-``sql
+```sql
 
 SELECT 
   SUM(Gender = 'M') as male_count, 
