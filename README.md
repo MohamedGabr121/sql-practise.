@@ -439,7 +439,7 @@ FROM patients p;
 
 23. Display the number of duplicate patients based on their first_name and last_name.
 
-``sql
+```sql
 
 SELECT first_name, last_name, COUNT(*) AS number_of_duplicates
 FROM patients
