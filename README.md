@@ -181,3 +181,119 @@ order by city ASC;
 ---
 
 Questions 1- 25
+
+
+1. Show unique birth years from patients and order them by ascending.
+
+```sql
+SELECT * FROM patients
+SELECT distinct year(birth_date) FROM patients
+order by birth_date asc
+select  first_name from patients
+group by first_name
+having count(first_name)=1
+SELECT
+patient_id,
+first_name
+FROM patients
+WHERE first_name LIKE 's____%s';
+
+```
+
+2.Show unique first names from the patients table which only occurs once in the list.
+For example, if two or more people are named 'John' in the first_name column then don't include their name in the output list. If only 1 person is named 'Leo' then include them in the output.
+
+```sql
+select s.patient_id,first_name,last_name from patients s,admissions a 
+where a.patient_id=s.patient_id and diagnosis='Dementia'
+
+```
+
+3. Show patient_id and first_name from patients where their first_name start and ends with 's' and is at least 6 characters long.
+
+``sql
+
+select (first_name) from patients
+order by len(first_name),first_name;
+
+```
+
+4. Show patient_id, first_name, last_name from patients whos diagnosis is 'Dementia'.
+   Primary diagnosis is stored in the admissions table.
+
+``sql
+
+SELECT 
+  SUM(Gender = 'M') as male_count, 
+  SUM(Gender = 'F') AS female_count
+FROM patients;
+
+```
+
+5. Display every patient's first_name.
+   Order the list by the length of each name and then by alphbetically.
+
+```sql
+
+select first_name,last_name,allergies from patients 
+where allergies in('Penicillin','Morphine')
+order by allergies ,first_name,last_name;
+
+```
+6. Show the total amount of male patients and the total amount of female patients in the patients table.
+   Display the two results in the same row.
+
+```sql
+select patient_id,diagnosis from admissions 
+group by 
+patient_id,diagnosis 
+having count(*)>1;
+
+```
+
+7. Show the total amount of male patients and the total amount of female patients in the patients table.
+   Display the two results in the same row.
+```sql
+
+SELECT
+  city,
+  COUNT(*) AS num_patients
+FROM patients
+GROUP BY city
+ORDER BY num_patients DESC, city asc;
+
+```
+
+8. Show patient_id, diagnosis from admissions. Find patients admitted multiple times for the same diagnosis.
+
+```sql
+
+SELECT first_name, last_name, 'Patient' as role FROM patients
+    union all
+select first_name, last_name, 'Doctor' from doctors;
+
+```
+
+9. Show the city and the total number of patients in the city.
+   Order from most to least patients and then by city name ascending.
+
+```sql
+
+select allergies,count(*) as tot from patients
+where allergies is not null
+group by  allergies
+order by tot desc;
+
+```
+
+10. Show first name, last name and role of every person that is either patient or doctor.
+    The roles are either "Patient" or "Doctor"
+
+```sql
+SELECT first_name,
+       last_name,
+       birth_date
+FROM patients
+WHERE year(birth_date) BETWEEN 1970 AND 1979
+ORDER BY birth_date ASC;
+
